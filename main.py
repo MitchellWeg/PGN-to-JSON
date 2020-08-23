@@ -2,8 +2,12 @@ import chess.pgn
 import sys
 import json
 
+file_name = sys.argv[1]
+json_out_filename = sys.argv[2]
+
+
 def main():
-    file = open(sys.argv[1])
+    file = open(file_name)
     while True:
         game = chess.pgn.read_game(file)
         if game is None:
@@ -12,7 +16,7 @@ def main():
         _game = Game(game.headers, game.mainline_moves().__str__)
         json_out = json.dumps(_game.__dict__(), indent=4)
 
-        json_file = open("lichessdb.json", "a")
+        json_file = open(json_out_filename, "a")
         json_file.write(json_out)
         print(json_out)
 
