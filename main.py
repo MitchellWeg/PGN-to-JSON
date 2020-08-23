@@ -1,8 +1,9 @@
 import chess.pgn
+import sys
 import json
 
 def main():
-    file = open("lichessdb.pgn")
+    file = open(sys.argv[1])
     while True:
         game = chess.pgn.read_game(file)
         if game is None:
