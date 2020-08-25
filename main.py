@@ -8,15 +8,16 @@ json_out_filename = sys.argv[2]
 
 def main():
     file = open(file_name)
+    json_file = open(json_out_filename, "a")
+
     while True:
         game = chess.pgn.read_game(file)
         if game is None:
             break
 
         _game = Game(game.headers, game.mainline_moves().__str__)
-        json_out = json.dumps(_game.__dict__(), indent=4)
+        json_out = json.dumps(_game.__dict__())
 
-        json_file = open(json_out_filename, "a")
         json_file.write(json_out)
         print(json_out)
 
