@@ -5,7 +5,6 @@ import json
 file_name = sys.argv[1]
 json_out_filename = sys.argv[2]
 
-
 def main():
     file = open(file_name)
     json_file = open(json_out_filename, "a")
@@ -19,6 +18,7 @@ def main():
         json_out = json.dumps(_game.__dict__())
 
         json_file.write(json_out)
+        json_file.write('\r\n')
         print(json_out)
 
 class Game:
